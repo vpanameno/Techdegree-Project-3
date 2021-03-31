@@ -180,9 +180,13 @@ function emailValidator() {
 function registrationValidator() {
   let activityValid = activityTotal > 0;
   if (activityValid) {
-    validationPass(fieldset);
+    fieldset.classList.add("valid");
+    fieldset.classList.remove("not-valid");
+    fieldset.lastElementChild.hidden = true;
   } else {
-    validationFail(fieldset);
+    fieldset.classList.add("not-valid");
+    fieldset.classList.remove("valid");
+    fieldset.lastElementChild.hidden = false;
   }
   return activityValid;
 }
@@ -191,10 +195,7 @@ function registrationValidator() {
 function ccNumValid() {
   if (!creditcard.hidden) {
     const cCNumberValue = cCNumberElement.value;
-    const cCNumberValid = /^\d{13,16}$/.test(cCNumberValue); //no dashes or spaces
-    console.log(
-      `cc validation test on "${cCNumberValue}" evaluates to ${cCNumberValid}`
-    );
+    const cCNumberValid = /^\d{13,16}$/.test(cCNumberValue); //no dashes or space
     if (cCNumberValid) {
       validationPass(cCNumberElement);
     } else {
