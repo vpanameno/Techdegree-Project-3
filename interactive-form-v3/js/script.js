@@ -158,10 +158,12 @@ function nameValidator() {
   } else {
     validationFail(nameElement);
   }
+
   return nameIsValid;
 }
+nameElement.addEventListener("keyup", nameValidator);
 
-//HELPER FUNCTION: EMAIL
+//HELPER FUNCTION: VALIDATOR FOR EMAIL
 function emailValidator() {
   const emailValue = emailElement.value;
   const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
@@ -191,7 +193,7 @@ function registrationValidator() {
   return activityValid;
 }
 
-// //HELPER FUNCTION: CREDIT CARD - NUMBER
+// //HELPER FUNCTION: VALIDATOR FOR CREDIT CARD - NUMBER
 function ccNumValid() {
   if (!creditcard.hidden) {
     const cCNumberValue = cCNumberElement.value;
@@ -204,7 +206,7 @@ function ccNumValid() {
     return cCNumberValid;
   }
 }
-// //HELPER FUNCTION: CREDIT CARD - ZIP CODE
+// //HELPER FUNCTION: VALIDATOR FOR CREDIT CARD - ZIP CODE
 function zipValid() {
   if (!creditcard.hidden) {
     const zipCodeValue = zipCode.value;
@@ -220,7 +222,7 @@ function zipValid() {
     return zipCodeValid;
   }
 }
-//HELPER FUNCTION: CREDIT CARD - CVV
+//HELPER FUNCTION: VALIDATOR CREDIT CARD - CVV
 function cvvValid() {
   if (!creditcard.hidden) {
     const cvvValue = cvv.value;
@@ -237,12 +239,11 @@ function cvvValid() {
   }
 }
 
+//EVENT LISTENER FOR VALIDATOR TO NOT SUBMIT UNTIL ALL FIELDS ARE DONE CORRECTLY
 form.addEventListener("submit", e => {
-  e.preventDefault();
   if (!nameValidator()) {
     e.preventDefault();
   }
-
   if (!emailValidator()) {
     e.preventDefault();
   }
@@ -260,6 +261,7 @@ form.addEventListener("submit", e => {
   }
   console.log("Submit handler is functional!");
 });
+//EXTRA CREDIT
 
 //**ACCESSIBILITY**
 for (let i = 0; i < checkboxes.length; i += 1) {
