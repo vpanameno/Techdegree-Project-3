@@ -178,7 +178,6 @@ function emailValidator() {
 
 //HELPER FUNCTION: REGISTERING FOR ONE ACTIVITY
 function registrationValidator() {
-  let legend = 
   let activityValid = activityTotal > 0;
   if (activityValid) {
     validationPass(fieldset);
