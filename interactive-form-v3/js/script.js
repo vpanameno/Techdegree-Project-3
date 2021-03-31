@@ -16,9 +16,6 @@ const otherTextArea = document.querySelector("#other-job-role"); //selecting the
 otherTextArea.hidden = true; //hides textarea by default
 
 jobRoles.addEventListener("change", e => {
-  //every time there is a change
-
-  // console.log(e.target.value);
   if (e.target.value == "other") {
     //if the what they clicked on is other then execute code
     otherTextArea.hidden = false;
@@ -137,7 +134,6 @@ function validationPass(element) {
   element.parentElement.classList.add("valid");
   element.parentElement.classList.remove("not-valid");
   element.parentElement.lastElementChild.hidden = true;
-  console.log("You Pass!");
 }
 
 //FUNCTION TO FAIL
@@ -145,15 +141,11 @@ function validationFail(element) {
   element.parentElement.classList.add("not-valid");
   element.parentElement.classList.remove("valid");
   element.parentElement.lastElementChild.hidden = false;
-  console.log("You Fail!");
 }
 //HELPER FUNCTION: NAME
 function nameValidator() {
   const nameValue = nameElement.value;
   const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
-  console.log(
-    `Name validation test on "${nameValue}" evaluates to ${nameIsValid}`
-  );
   if (nameIsValid) {
     validationPass(nameElement);
   } else {
@@ -162,15 +154,11 @@ function nameValidator() {
 
   return nameIsValid;
 }
-nameElement.addEventListener("keyup", nameValidator);
 
 //HELPER FUNCTION: VALIDATOR FOR EMAIL
 function emailValidator() {
   const emailValue = emailElement.value;
   const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
-  console.log(
-    `Email validation test on "${emailValue}" evaluates to ${emailIsValid}`
-  );
   if (emailIsValid) {
     validationPass(emailElement);
   } else {
@@ -212,9 +200,6 @@ function zipValid() {
   if (!creditcard.hidden) {
     const zipCodeValue = zipCode.value;
     const zipCodeValid = /^\d{5}$/.test(zipCodeValue);
-    console.log(
-      `credit card validation test on "${zipCodeValue}" evaluates to ${zipCodeValid}`
-    );
     if (zipCodeValid) {
       validationPass(zipCode);
     } else {
@@ -228,9 +213,6 @@ function cvvValid() {
   if (!creditcard.hidden) {
     const cvvValue = cvv.value;
     const cvvNumberValid = /^\d{3}$/.test(cvvValue);
-    console.log(
-      `credit card validation test on "${cvvValue}" evaluates to ${cvvNumberValid}`
-    );
     if (cvvNumberValid) {
       validationPass(cvv);
     } else {
@@ -260,7 +242,6 @@ form.addEventListener("submit", e => {
   if (!cvvValid()) {
     e.preventDefault();
   }
-  console.log("Submit handler is functional!");
 });
 
 //**ACCESSIBILITY**
@@ -269,7 +250,6 @@ form.addEventListener("submit", e => {
 for (let i = 0; i < checkboxes.length; i += 1) {
   checkboxes[i].addEventListener("focus", e => {
     checkboxes[i].parentElement.classList.add("focus");
-    console.log(checkboxes[i].parentElement);
   });
   checkboxes[i].addEventListener("blur", e => {
     checkboxes[i].parentElement.classList.remove("focus");
