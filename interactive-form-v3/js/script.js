@@ -133,16 +133,16 @@ const div = document.querySelector("#activities-box");
 
 //FUNCTION TO PASS
 function validationPass(element) {
-  element.parentElement.className = "valid";
-  element.parentElement.removeClass = "not-valid";
+  element.parentElement.classList.add("valid");
+  element.parentElement.classList.remove("not-valid");
   element.parentElement.lastElementChild.hidden = true;
   console.log("You Pass!");
 }
 
 //FUNCTION TO FAIL
 function validationFail(element) {
-  element.parentElement.className = "not-valid";
-  element.parentElement.removeClass = "valid";
+  element.parentElement.classList.add("not-valid");
+  element.parentElement.classList.remove("valid");
   element.parentElement.lastElementChild.hidden = false;
   console.log("You Fail!");
 }
@@ -183,7 +183,6 @@ function registrationValidator() {
     validationPass(fieldset);
   } else {
     validationFail(fieldset);
-    console.log(legend.parentElement);
   }
   return activityValid;
 }
