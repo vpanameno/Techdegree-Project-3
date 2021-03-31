@@ -37,7 +37,7 @@ const colorOptions = document.querySelectorAll("#color option");
 //disables the color options menu
 color.disabled = true;
 
-//create event listener to listen for changes
+//Below you will hide the color menu until a design is clicked
 designSelect.addEventListener("change", e => {
   color.disabled = false; //allow for user to click a design color
   for (let i = 1; i < colorOptions.length; i += 1) {
@@ -56,6 +56,7 @@ designSelect.addEventListener("change", e => {
   }
 });
 //***REGISTER FOR ACTIVITIES SECTION***
+//Below you will add all of the activities in real-time and see the total below
 const fieldset = document.querySelector("#activities");
 let activityTotal = 0; //created a total variable to hold the final total
 
@@ -261,9 +262,10 @@ form.addEventListener("submit", e => {
   }
   console.log("Submit handler is functional!");
 });
-//EXTRA CREDIT
 
 //**ACCESSIBILITY**
+//Below it will make sure to add focus to the appropriate element when clicked on
+
 for (let i = 0; i < checkboxes.length; i += 1) {
   checkboxes[i].addEventListener("focus", e => {
     checkboxes[i].parentElement.classList.add("focus");
