@@ -236,6 +236,8 @@ form.addEventListener("submit", e => {
     }
     if (!cvvValid()) {
       e.preventDefault();
+    } else {
+      paymentOptions[1].selected = false;
     }
   }
 });
