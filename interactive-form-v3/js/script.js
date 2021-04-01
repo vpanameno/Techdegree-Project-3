@@ -13,11 +13,11 @@ name.focus({ preventScroll: true });
 const jobRoles = document.querySelector("#title"); //Selecting select element (drop down menu)
 const otherTextArea = document.querySelector("#other-job-role"); //selecting the other option text area
 
-otherTextArea.hidden = true; //hides textarea by default
+otherTextArea.hidden = true; //hides text area by default
 
 jobRoles.addEventListener("change", e => {
   if (e.target.value == "other") {
-    //if the what they clicked on is other then execute code
+    //if what they clicked on is other then execute code
     otherTextArea.hidden = false;
   } else {
     //else just continue hiding text box
@@ -184,42 +184,36 @@ function registrationValidator() {
 
 // //HELPER FUNCTION: VALIDATOR FOR CREDIT CARD - NUMBER
 function ccNumValid() {
-  if (!creditcard.hidden) {
-    const cCNumberValue = cCNumberElement.value;
-    const cCNumberValid = /^\d{13,16}$/.test(cCNumberValue); //no dashes or space
-    if (cCNumberValid) {
-      validationPass(cCNumberElement);
-    } else {
-      validationFail(cCNumberElement);
-    }
-    return cCNumberValid;
+  const cCNumberValue = cCNumberElement.value;
+  const cCNumberValid = /^\d{13,16}$/.test(cCNumberValue); //no dashes or space
+  if (cCNumberValid) {
+    validationPass(cCNumberElement);
+  } else {
+    validationFail(cCNumberElement);
   }
+  return cCNumberValid;
 }
 // //HELPER FUNCTION: VALIDATOR FOR CREDIT CARD - ZIP CODE
 function zipValid() {
-  if (!creditcard.hidden) {
-    const zipCodeValue = zipCode.value;
-    const zipCodeValid = /^\d{5}$/.test(zipCodeValue);
-    if (zipCodeValid) {
-      validationPass(zipCode);
-    } else {
-      validationFail(zipCode);
-    }
+  const zipCodeValue = zipCode.value;
+  const zipCodeValid = /^\d{5}$/.test(zipCodeValue);
+  if (zipCodeValid) {
+    validationPass(zipCode);
+  } else {
+    validationFail(zipCode);
     return zipCodeValid;
   }
 }
 //HELPER FUNCTION: VALIDATOR CREDIT CARD - CVV
 function cvvValid() {
-  if (!creditcard.hidden) {
-    const cvvValue = cvv.value;
-    const cvvNumberValid = /^\d{3}$/.test(cvvValue);
-    if (cvvNumberValid) {
-      validationPass(cvv);
-    } else {
-      validationFail(cvv);
-    }
-    return cvvNumberValid;
+  const cvvValue = cvv.value;
+  const cvvNumberValid = /^\d{3}$/.test(cvvValue);
+  if (cvvNumberValid) {
+    validationPass(cvv);
+  } else {
+    validationFail(cvv);
   }
+  return cvvNumberValid;
 }
 
 //EVENT LISTENER FOR VALIDATOR TO NOT SUBMIT UNTIL ALL FIELDS ARE DONE CORRECTLY
@@ -233,19 +227,21 @@ form.addEventListener("submit", e => {
   if (!registrationValidator()) {
     e.preventDefault();
   }
-  if (!ccNumValid()) {
-    e.preventDefault();
-  }
-  if (!zipValid()) {
-    e.preventDefault();
-  }
-  if (!cvvValid()) {
-    e.preventDefault();
+  if (paymentOptions[1].selected) {
+    if (!ccNumValid()) {
+      e.preventDefault();
+    }
+    if (!zipValid()) {
+      e.preventDefault();
+    }
+    if (!cvvValid()) {
+      e.preventDefault();
+    }
   }
 });
 
 //**ACCESSIBILITY**
-//Below it will make sure to add focus to the appropriate element when clicked on
+//Below it will make sure to add focus to the checkbox when clicked on
 
 for (let i = 0; i < checkboxes.length; i += 1) {
   checkboxes[i].addEventListener("focus", e => {
